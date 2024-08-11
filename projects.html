@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raghul M - Projects</title>
+    <style>
+         html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e8ad7f, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #f39c12;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .project-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .project {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .project:hover {
+            transform: scale(1.05);
+        }
+        .project h2 {
+            margin-top: 0;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #2c3e50;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatParticle 4s infinite;
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(10px, 15px);
+            }
+            50% {
+                transform: translate(20px, -20px);
+            }
+            75% {
+                transform: translate(-10px, 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="certificates.html">Certificates</a>
+            <a href="education.html">Education</a>
+            <a href="projects.html">Projects</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Projects</h1>
+        <div class="project-list">
+            <div class="project" onclick="openModal('project1')">
+                <h2>Fake Media Detection</h2>
+                <p>NLP and Blockchain Approaches</p>
+            </div>
+            <div class="project" onclick="openModal('project2')">
+                <h2>Anti Sleep Detection System</h2>
+                <p>Alarming System for Drivers</p>
+            </div>
+            <div class="project" onclick="openModal('project3')">
+                <h2>Binary Tree Path Finder</h2>
+                <p>Implementing DFS and BFS</p>
+            </div>
+            <div class="project" onclick="openModal('project4')">
+                <h2>Graph Clustering</h2>
+                <p>Community Detection using Modularity Optimization</p>
+            </div>
+            <div class="project" onclick="openModal('project5')">
+                <h2>Maze Solver</h2>
+                <p>Applying BFS and DFS to Find Paths</p>
+            </div>
+            <div class="project" onclick="openModal('project6')">
+                <h2>Planarity Testing</h2>
+                <p>Analyzing Embeddability of Graphs in a Plane</p>
+            </div>
+            <div class="project" onclick="openModal('project7')">
+                <h2>Topological Sorting</h2>
+                <p>Ordering Dependencies in a DAG</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle"></h2>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+
+    <div class="particles" id="particles"></div>
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        function openModal(projectId) {
+            modal.style.display = "block";
+            var title = document.getElementById("modalTitle");
+            var description = document.getElementById("modalDescription");
+
+            switch(projectId) {
+                case 'project1':
+                    title.innerText = "Fake Media Detection";
+                    description.innerText = "This project aims to identify fake news by comparing scores between an actual dataset and a dataset of known false information. The verified real news will then be stored on the blockchain for security and integrity.";
+                    break;
+                case 'project2':
+                    title.innerText = "Anti Sleep Detection System";
+                    description.innerText = "The aim of this hardware project is to create a device that stops a car when the driver falls asleep, ensuring road safety.";
+                    break;
+                case 'project3':
+                    title.innerText = "Binary Tree Path Finder";
+                    description.innerText = "This project implements Depth-First Search (DFS) and Breadth-First Search (BFS) algorithms to find paths in a binary tree structure.";
+                    break;
+                case 'project4':
+                    title.innerText = "Graph Clustering and Community Detection";
+                    description.innerText = "This project focuses on implementing modularity optimization techniques for detecting communities within graph structures.";
+                    break;
+                case 'project5':
+                    title.innerText = "Maze Solver";
+                    description.innerText = "This project applies Breadth-First Search (BFS) and Depth-First Search (DFS) algorithms to find paths in a maze.";
+                    break;
+                case 'project6':
+                    title.innerText = "Planarity Testing and Embedding";
+                    description.innerText = "This project analyzes the embeddability of graphs in a plane, determining whether a graph can be drawn without edge crossings.";
+                    break;
+                case 'project7':
+                    title.innerText = "Topological Sorting";
+                    description.innerText = "This project implements topological sorting to order dependencies in a Directed Acyclic Graph (DAG).";
+                    break;
+            }
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                particle.style.animationDuration = `${Math.random() * 4 + 2}s`;
+                particle.style.animationDelay = `${Math.random() * 2}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
